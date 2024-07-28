@@ -1,0 +1,166 @@
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+mode: rule
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+bind-address: "*"
+unified-delay: true
+ipv6: false
+profile:
+  store-selected: true
+  store-fake-ip: true
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  listen: 0.0.0.0:7894
+  fallback-filter:
+    geoip: false
+    ipcidr:
+    - 240.0.0.0/4
+  nameserver:
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+    - tls://1.1.1.1:853
+    - tls://8.8.8.8:853
+  fallback:
+    - tcp://1.1.1.1
+    - tcp://8.8.8.8
+    - 1.1.1.1
+    - 8.8.8.8
+  default-nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+  - "+.*"
+  - "+.media.dssott.com"
+  - "*.mcdn.bilivideo.cn"
+  - ff.dorado.sdo.com
+  - "*.ff14.sdo.com"
+  - "*.ffxiv.com"
+  - "*.finalfantasyxiv.com"
+  - "*.square-enix.com"
+  - "+.nflxvideo.net"
+  - stun.l.google.com
+  - lens.l.google.com
+  - swdist.apple.com
+  - swcdn.apple.com
+  - swdownload.apple.com
+  - swquery.apple.com
+  - swscan.apple.com
+  - mesu.apple.com
+  - "*.router.asus.com"
+  - "*.linksyssmartwifi.com"
+  - "*.linksys.com"
+  - heartbeat.belkin.com
+  - "+.stun.*.*.*.*.*"
+  - "+.stun.*.*.*.*"
+  - "+.stun.*.*.*"
+  - "+.stun.*.*"
+  - stun.*.*.*
+  - stun.*.*
+  - proxy.golang.org
+  - "+.wargaming.net"
+  - "+.wowsgame.cn"
+  - "+.wggames.cn"
+  - "+.wotgame.cn"
+  - "+.battlenet.com.cn"
+  - xnotify.xboxlive.com
+  - xbox.*.microsoft.com
+  - "*.*.xboxlive.com"
+  - xbox.*.*.microsoft.com
+  - "+.stun.playstation.net"
+  - "*.n.n.srv.nintendo.net"
+  - "+.srv.nintendo.net"
+  - localhost.sec.qq.com
+  - localhost.ptlogin2.qq.com
+  - msftncsi.com
+  - msftconnecttest.com
+  - "+.msftncsi.com"
+  - "+.msftconnecttest.com"
+  - music.migu.cn
+  - "*.music.migu.cn"
+  - "*.xiami.com"
+  - amobile.music.tc.qq.com
+  - aqqmusic.tc.qq.com
+  - dl.stream.qqmusic.qq.com
+  - isure.stream.qqmusic.qq.com
+  - mobileoc.music.tc.qq.com
+  - streamoc.music.tc.qq.com
+  - "*.y.qq.com"
+  - y.qq.com
+  - joox.com
+  - api.joox.com
+  - api-jooxtt.sanook.com
+  - "*.kuwo.cn"
+  - trackercdn.kugou.com
+  - songsearch.kugou.com
+  - music.taihe.com
+  - musicapi.taihe.com
+  - "*.126.net"
+  - "*.music.163.com"
+  - music.163.com
+  - time1.cloud.tencent.com
+  - "+.pool.ntp.org"
+  - "*.ntp.org.cn"
+  - "*.time.edu.cn"
+  - ntp7.*.com
+  - ntp6.*.com
+  - ntp5.*.com
+  - ntp4.*.com
+  - ntp3.*.com
+  - ntp2.*.com
+  - ntp1.*.com
+  - ntp.*.com
+  - time7.*.com
+  - time6.*.com
+  - time5.*.com
+  - time4.*.com
+  - time3.*.com
+  - time2.*.com
+  - time1.*.com
+  - time.*.apple.com
+  - time.*.edu.cn
+  - time.*.gov
+  - time.*.com
+  - "*.home.arpa"
+  - "*.local"
+  - "*.test"
+  - "*.localhost"
+  - "*.invalid"
+  - "*.example"
+  - "*.localdomain"
+  - "*.lan"
+  
+proxies:
+  - name: ss-outline-batE19pqzRnUN2y7e8S3Pa
+    type: ss
+    server: chacha20-ietf-poly1305
+    port: batE19pqzRnUN2y7e8S3Pa
+    cipher: chacha20-ietf-poly1305
+    password: batE19pqzRnUN2y7e8S3Pa
+    udp: true
+  - name: ss-outline-EBJwGjHsqeFMJ1qXdgXGLl
+    type: ss
+    server: chacha20-ietf-poly1305
+    port: EBJwGjHsqeFMJ1qXdgXGLl
+    cipher: chacha20-ietf-poly1305
+    password: EBJwGjHsqeFMJ1qXdgXGLl
+    udp: true
+
+proxy-groups:
+  - name: onlySSH-select
+    type: select
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 30
+    #tolerance: 50
+    proxies:
+      - ss-outline-batE19pqzRnUN2y7e8S3Pa
+      - ss-outline-EBJwGjHsqeFMJ1qXdgXGLl
+  
+rules:
+  - MATCH,onlySSH-select
